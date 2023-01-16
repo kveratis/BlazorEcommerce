@@ -1,5 +1,4 @@
-﻿using BlazorEcommerce.AspNetCore.Api.Domain;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorEcommerce.AspNetCore.Api.Controllers
 {
@@ -7,20 +6,21 @@ namespace BlazorEcommerce.AspNetCore.Api.Controllers
     [ApiController]
     public sealed class ProductController : ControllerBase
     {
-        private readonly DataContext _context;
+        private readonly IProductService _productService;
         private readonly ILogger<ProductController> _logger;
 
-        public ProductController(DataContext context, ILogger<ProductController> logger)
+        public ProductController(IProductService productService, ILogger<ProductController> logger)
         {
-            _context = context;
+            _productService = productService;
             _logger = logger;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetProducts()
+        public async Task<ActionResult<ServiceResponse<List<Product>>>> GetProducts()
         {
-            var products = await _context.Products.ToListAsync();
-            return Ok(products);
+            var result = await _productService.GetProductsAsync();
+
+            return Ok(result);
         }
     }
 }

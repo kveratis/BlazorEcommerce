@@ -1,18 +1,20 @@
 global using Microsoft.EntityFrameworkCore;
 global using BlazorEcommerce.AspNetCore.Api.Data;
+global using BlazorEcommerce.AspNetCore.Api.Domain;
+global using BlazorEcommerce.AspNetCore.Api.Services;
 using Microsoft.AspNetCore.ResponseCompression;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddDbContext<DataContext>();
 
 builder.Services.AddControllers();
 builder.Services.AddRazorPages();
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IProductService, ProductService>();
 
 var app = builder.Build();
 
