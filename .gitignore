@@ -455,3 +455,5 @@ Dockerfile.bak
 ## Batch files
 redis-commander.bat
 
+## Application Test Data
+dbdata/

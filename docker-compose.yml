@@ -1,0 +1,21 @@
+version: "3.6"
+
+services:
+  db:
+    image: postgres:14
+    restart: always
+    environment:
+      POSTGRES_DB: blazor_ecommerce
+      POSTGRES_PASSWORD: Blazor123
+    ports:
+      - 5432:5432
+    volumes:
+      - ./dbdata:/var/lib/postgresql/data
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8004:8080
+    depends_on:
+      - db

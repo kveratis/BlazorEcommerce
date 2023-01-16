@@ -1,4 +1,6 @@
-﻿namespace BlazorEcommerce.AspNetCore.Api.Domain
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace BlazorEcommerce.AspNetCore.Api.Domain
 {
     public sealed class Product
     {
@@ -10,6 +12,7 @@
 
         public string ImageUrl { get; set; } = string.Empty;
 
+        [Column(TypeName = "numeric(18,2)")]
         public decimal Price { get; set; }
     }
 }
