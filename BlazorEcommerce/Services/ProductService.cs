@@ -7,6 +7,7 @@ namespace BlazorEcommerce.Services
         List<Product> Products { get; set; }
 
         Task GetProductsAsync();
+        Task<ServiceResponse<Product>> GetProductAsync(int productId);
     }
 
     public sealed class ProductService : IProductService
@@ -30,6 +31,13 @@ namespace BlazorEcommerce.Services
             {
                 Products = result.Data;
             }
+        }
+
+        public async Task<ServiceResponse<Product>> GetProductAsync(int productId)
+        {
+            var result = await _http.GetFromJsonAsync<ServiceResponse<Product>>($"{GetProductsEndpoint}/{productId}");
+
+            return result;
         }
     }
 }

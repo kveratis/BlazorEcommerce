@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33209.295
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorEcommerce", "BlazorEcommerce\BlazorEcommerce.csproj", "{F4B5AE88-AEC2-41D2-AC81-766C5D45FD06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorEcommerce", "BlazorEcommerce\BlazorEcommerce.csproj", "{F4B5AE88-AEC2-41D2-AC81-766C5D45FD06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorEcommerce.AspNetCore.Api", "BlazorEcommerce.AspNetCore.Api\BlazorEcommerce.AspNetCore.Api.csproj", "{0B97A23A-8417-4698-9E42-931463A43BFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorEcommerce.AspNetCore.Api", "BlazorEcommerce.AspNetCore.Api\BlazorEcommerce.AspNetCore.Api.csproj", "{0B97A23A-8417-4698-9E42-931463A43BFA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
