@@ -1,0 +1,68 @@
+﻿@page "/register"
+
+@inject IAuthService AuthService
+
+<PageTitle>Register</PageTitle>
+
+<h3>Register</h3>
+
+<EditForm Model="@user" OnValidSubmit="HandleRegistration">
+    <DataAnnotationsValidator />
+    <MudGrid>
+        <MudItem xs="12" sm="7">
+            <MudCard>
+                <MudCardContent>
+                    <MudTextField Label="Email" @bind-Value="user.Email" For="@(() => user.Email)" InputType="InputType.Email"/>
+                    <MudTextField Label="Password" @bind-Value="user.Password" For="@(() => user.Password)" InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="TogglePasswordVisibility" AdornmentAriaLabel="Show Password"/>
+                    <MudTextField Label="Confirm Password" @bind-Value="user.ConfirmPassword" For="@(() => user.ConfirmPassword)" InputType="@PasswordInput" Adornment="Adornment.End" AdornmentIcon="@PasswordInputIcon" OnAdornmentClick="TogglePasswordVisibility" AdornmentAriaLabel="Show Password"/>
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Register</MudButton>
+                </MudCardActions>
+                <MudCardContent>
+                    @if (success)
+                    {
+                        <MudAlert Severity="Severity.Success">@message</MudAlert>
+                    }
+                    else if(!string.IsNullOrEmpty(message))
+                    {
+                        <MudAlert Severity="Severity.Error">@message</MudAlert>
+                    }
+                </MudCardContent>
+            </MudCard>
+        </MudItem>
+    </MudGrid>
+</EditForm>
+
+@code {
+    UserRegister user = new UserRegister();
+    InputType PasswordInput = InputType.Password;
+    string PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+    bool passwordIsShow = false;
+    string message = string.Empty;
+    bool success = false;
+
+    void TogglePasswordVisibility()
+    {
+        if (passwordIsShow)
+        {
+            passwordIsShow = false;
+            PasswordInputIcon = Icons.Material.Filled.VisibilityOff;
+            PasswordInput = InputType.Password;
+        }
+        else
+        {
+            passwordIsShow = true;
+            PasswordInputIcon = Icons.Material.Filled.Visibility;
+            PasswordInput = InputType.Text;
+        }
+    }
+
+    async Task HandleRegistration()
+    {
+        var result = await AuthService.Register(user);
+
+        success = result.Success;
+        message = result.Message;
+    }
+}
